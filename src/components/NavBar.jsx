@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
 function NavBar({onFilter, data}) {
-
-  const [shownav, setShownav] = useState(false)
-  const [showoptionsLocation, setShowoptionsLocation] = useState(false)
-  const [showguest, setShowguest] = useState(false)
   
   const [valorAdult, setValorAdult] = useState(0)
   const [valorChildren, setValorChildren] = useState(0)
@@ -14,10 +10,36 @@ function NavBar({onFilter, data}) {
 
   const [showGuestsText, setShowGuestsText] = useState(true)
 
+  const [searchClicked, setSearchClicked] = useState(false)
+  const [showOptions, setShowOptions] = useState(0);
+  const OPTIONS = {
+    NONE: 0,
+    LOCATION: 1,
+    GUESTS: 2
+  }
+
 const handleFilterClick = () => {
 
   onFilter(location, total);
+  setSearchClicked(true)
+  hideOptions();
 };
+
+const hideOptions = () => {
+  setSearchClicked(false)
+  setShowOptions(OPTIONS.NONE);
+}
+
+const showLocationOptions = () => {
+  setSearchClicked(true)
+  setShowOptions(OPTIONS.LOCATION);
+}
+
+const showGuestOptions = () => {
+  setSearchClicked(true)
+  setShowOptions(OPTIONS.GUESTS);
+}
+
 
   const obtenerCiudadesUnicas = () =>{
     const ciudadesUnicas = [...new Set(data.map((obj)=>obj.city))];
@@ -49,38 +71,23 @@ const handleFilterClick = () => {
   const total = valorAdult + valorChildren;
   
 
-
-  const showContainer = (n)=>{
-    setShowoptionsLocation(n === 1 );
-    setShowguest(n === 2 );
-  }
-  
-
-   const handleShow = ()=>{
-      setShownav(!shownav)
-      setShowoptionsLocation(!showoptionsLocation);
-     
-    }
-
-  
-
   return (
     <>
     <div className='edit-search'>
-    {shownav &&
+    {searchClicked &&
       (<>
       <div className='container-edit-search'>
       <div className='container-close'>
        <h2 className='edit'>Edit your search</h2>
-       <button className="btn-close" onClick={handleShow}></button>
+       <button className="btn-close" onClick={hideOptions}></button>
        </div>
        <div className='btns-search'>
-        <button className='btn-location' onClick={()=>showContainer(1)}><span className='btns-content'>Location</span><div className='btns-content-2 ' id='ubicacion'>{location}, Finland</div></button>
-        <button className='btn-guest-nav' onClick={()=>showContainer(2)}><span className='btns-content'>Guests</span><div className='btns-content-2'>{total}</div></button>
+        <button className='btn-location' onClick={showLocationOptions}><span className='btns-content'>Location</span><div className='btns-content-2 ' id='ubicacion'>{location}, Finland</div></button>
+        <button className='btn-guest-nav' onClick={showGuestOptions}><span className='btns-content'>Guests</span><div className='btns-content-2'>{total}</div></button>
         <button className='btn-search-nav' onClick={handleFilterClick}><img className="ico-search" src="./img/search_black_36dp.svg"/><span>Search</span></button>
         </div>
         
-        {showoptionsLocation && (
+        {showOptions === OPTIONS.LOCATION && (
           <>
           <div className='location-options'>
             {ciudades.map((city, i)=>(
@@ -90,7 +97,7 @@ const handleFilterClick = () => {
           </>
         )}
 
-        {showguest && (
+        {showOptions === OPTIONS.GUESTS && (
           <>
           <div className='guest-options'>
             <div className='guest-container'>
@@ -124,8 +131,8 @@ const handleFilterClick = () => {
       <img className="logo" src="./img/logo.principal.svg" alt="logo"/>
     </div>
     <nav className="navbar">
-    <button className="btn-country" onClick={handleShow}><span className="country">{location},Finlad</span></button>
-    <button className="btn-guest" onClick={handleShow}><span className="guests">{showGuestsText ? 'Add guests' : `${total}`}</span></button>
+    <button className="btn-country" onClick={showLocationOptions}><span className="country">{location},Finlad</span></button>
+    <button className="btn-guest" onClick={showGuestOptions}><span className="guests">{showGuestsText ? 'Add guests' : `${total}`}</span></button>
     <button className="btn-search" onClick={handleFilterClick} ><img className="ico-search" src="./img/search_black_24dp.svg" alt="" /></button>
     </nav>
     </header>

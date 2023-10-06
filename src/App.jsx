@@ -28,7 +28,6 @@ function App() {
 
   // Puedes ver la variable data en consola.
   //console.log(data);
-  const [showNavBar, setShowNavBar] = useState(true);
   const [filteredData, setFilteredData] = useState(data)
   //console.log(filteredData)
   const handleSearch = (location, totalGuests) => { 
@@ -39,8 +38,6 @@ function App() {
       )
     })
     setFilteredData(filteredResults.length > 0 ? filteredResults : data);
-    setShowNavBar(false);
-    //console.log(filteredResults)
   }
  
 
