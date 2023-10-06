@@ -2,13 +2,13 @@
     padding: 0;
     margin: 0;
     box-sizing: 0;
-    font-family: 'Montserrat', sans-serif;
-    font-family: 'Mulish', sans-serif;
+    /* font-family: 'Montserrat', sans-serif; */
+    /* font-family: 'Mulish', sans-serif; */
 }
 
 .principal-container{
     position: relative;
-    padding: 1.25rem 0 1.25rem 0;
+    padding: 1.25rem 2rem 1.25rem 2rem;
 
 }
 
@@ -17,6 +17,7 @@
     justify-content: space-between;
     margin-top: 1rem;
     margin-bottom: 0.5rem;
+    
 }
 
 .img-container{
@@ -62,7 +63,7 @@
     width: 100%;
     column-gap: 2.5rem;
     row-gap: 2.5rem;
-    justify-content: center;
+    /* justify-content: center; */
     
 }
 
@@ -70,6 +71,7 @@
     color: rgba(156,163,175);
     font-size: .875rem;
     font-weight: 500;
+    font-family: 'Mulish', sans-serif;
 }
 
 .text-title{
@@ -100,7 +102,7 @@
 .encabezado{
     display: flex;
     justify-content: space-between;
-    width: 95%;
+    width: 100%;
     margin: auto;
     align-items: center;
     position: relative;
@@ -110,20 +112,22 @@
 .Title{
     display: flex;
     justify-content: space-between;
-    width: 95%;
+    width: 100%;
     margin: auto;
     margin-bottom: 2rem;
     margin-top: 4rem;
     align-items: center;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .titulo-principal{
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 800;
 }
 
 .titulo-secundario{
     font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .logo{
@@ -219,6 +223,10 @@
     height: 65px;
 }
 
+.selected-button{
+    border: 2px solid red;
+}
+
 .btn-guest-nav{
     width: 630px;
     display: inline-flex;
@@ -231,7 +239,9 @@
     height: 65px;
 }
 
-
+span{
+    font-family: 'Mulish', sans-serif;
+}
 
 .container-close{
     display: flex;

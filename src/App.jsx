@@ -15,6 +15,7 @@ function App() {
       const resJson = await res.json();
       // Aquí guardamos los datos de "stays.json" en la variable data.
       setData(resJson);
+      setFilteredData(resJson);
     } catch (error) {
       console.log(error);
     }
@@ -26,23 +27,38 @@ function App() {
   }, []);
 
   // Puedes ver la variable data en consola.
-  console.log(data);
+  //console.log(data);
+  const [showNavBar, setShowNavBar] = useState(true);
+  const [filteredData, setFilteredData] = useState(data)
+  //console.log(filteredData)
+  const handleSearch = (location, totalGuests) => { 
+    const filteredResults = data.filter((item)=>{
+      return (
+        (location === "" || item.city === location) &&
+        (totalGuests === "" || item.maxGuests >= totalGuests)
+      )
+    })
+    setFilteredData(filteredResults.length > 0 ? filteredResults : data);
+    setShowNavBar(false);
+    //console.log(filteredResults)
+  }
+ 
+
   return (
     <>
     <div className="principal-container">
-    <NavBar/>
+    <NavBar onFilter={handleSearch} data={data}/>
     <main>
     <div className="Title">
       <h1 className="titulo-principal">Stays in Finland</h1>
-      <span className="titulo-secundario">12+ stays</span>
+      <span className="titulo-secundario">{filteredData.length > 12 ? '12+' : filteredData.length} stays</span>
     </div>
 
     <div className="cards-container">
-      <Card/>
-      </div>
-      
-      </main>
-      </div>
+      <Card data={filteredData} />
+    </div>
+    </main>
+    </div>
     </>
   );
 }
