@@ -1,4 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
+import LocationSection from './LocationSection'
+import GuestSection from './GuestSection'
+import './NavBar.css'
+
 
 function NavBar({onFilter, data}) {
   
@@ -67,7 +71,7 @@ const showGuestOptions = () => {
       setShowGuestsText(false)
     }
   }
-  
+
   const total = valorAdult + valorChildren;
   
 
@@ -75,7 +79,7 @@ const showGuestOptions = () => {
     <>
     <div className='edit-search'>
     {searchClicked &&
-      (<>
+      (
       <div className='container-edit-search'>
       <div className='container-close'>
        <h2 className='edit'>Edit your search</h2>
@@ -84,45 +88,15 @@ const showGuestOptions = () => {
        <div className='btns-search'>
         <button className='btn-location' onClick={showLocationOptions}><span className='btns-content'>Location</span><div className='btns-content-2 ' id='ubicacion'>{location}, Finland</div></button>
         <button className='btn-guest-nav' onClick={showGuestOptions}><span className='btns-content'>Guests</span><div className='btns-content-2'>{total}</div></button>
-        <button className='btn-search-nav' onClick={handleFilterClick}><img className="ico-search" src="./img/search_black_36dp.svg"/><span>Search</span></button>
+        <button className='btn-search-nav' onClick={handleFilterClick}><img className="ico-search" src="./img/search_black_36dp.svg"/><span className='span-search'>Search</span></button>
         </div>
         
-        {showOptions === OPTIONS.LOCATION && (
-          <>
-          <div className='location-options'>
-            {ciudades.map((city, i)=>(
-              <button key={i} className='btns-location' onClick={()=>handleCiudadClick(city)}><img src="./img/location_on_black_24dp.svg"/><span className='locations'>{city}, Finland</span></button>
-            ))}
-          </div>
-          </>
+        {showOptions === OPTIONS.LOCATION && ( <LocationSection location={location} ciudades={ciudades} handleCiudadClick={handleCiudadClick} />
         )}
 
-        {showOptions === OPTIONS.GUESTS && (
-          <>
-          <div className='guest-options'>
-            <div className='guest-container'>
-              <h2 className='guests-1'>Adult</h2>
-              <span className='btns-content-2'>Age 13 or above</span>
-              <div className='num-guest'>
-                <button className='btn-o' onClick={() => actualizarValor('adult', 'sumar')}>+</button>
-                <span>{valorAdult}</span>
-                <button className='btn-o m-lg-2' onClick={() => actualizarValor('adult', 'restar')}>-</button>
-              </div>
-            </div>
-            <div className='guest-container'>
-              <h2 className='guests-1'>Children</h2>
-              <span className='btns-content-2'>Age 2 - 12</span>
-              <div className='num-guest'>
-                <button className='btn-o' onClick={() => actualizarValor('children', 'sumar')}>+</button>
-                <span>{valorChildren}</span>
-                <button className='btn-o m-lg-2' onClick={() => actualizarValor('children', 'restar')}>-</button>
-              </div>
-            </div>
-          </div>
-          </>
+        {showOptions === OPTIONS.GUESTS && ( <GuestSection valorAdult={valorAdult} valorChildren={valorChildren} actualizarValor={actualizarValor}/>
         )}
         </div>
-        </>
       )}
       
     </div>
@@ -136,7 +110,6 @@ const showGuestOptions = () => {
     <button className="btn-search" onClick={handleFilterClick} ><img className="ico-search" src="./img/search_black_24dp.svg" alt="" /></button>
     </nav>
     </header>
-      
     </>
   )
 }

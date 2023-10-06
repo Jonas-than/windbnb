@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import './Card.css'
 
 
 function Card({data}) {
@@ -22,8 +23,7 @@ function Card({data}) {
             </div>
             <div className="text-title">{el.title}</div>
         </div>   
-      ))}
-       
+      ))}    
     </>
   )
 }
