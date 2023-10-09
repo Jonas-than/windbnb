@@ -88,7 +88,7 @@ const showGuestOptions = () => {
        <div className='btns-search'>
         <button className='btn-location' onClick={showLocationOptions}><span className='btns-content'>Location</span><div className='btns-content-2 ' id='ubicacion'>{location}, Finland</div></button>
         <button className='btn-guest-nav' onClick={showGuestOptions}><span className='btns-content'>Guests</span><div className='btns-content-2'>{total}</div></button>
-        <button className='btn-search-nav' onClick={handleFilterClick}><img className="ico-search" src="./img/search_black_36dp.svg"/><span className='span-search'>Search</span></button>
+        <button className='btn-search-nav' onClick={handleFilterClick}><img className="ico-search" src="img/search_black_36dp.svg"/><span className='span-search'>Search</span></button>
         </div>
         
         {showOptions === OPTIONS.LOCATION && ( <LocationSection location={location} ciudades={ciudades} handleCiudadClick={handleCiudadClick} />
@@ -102,12 +102,12 @@ const showGuestOptions = () => {
     </div>
     <header className="encabezado">
     <div>
-      <img className="logo" src="./img/logo.principal.svg" alt="logo"/>
+      <img className="logo" src="img/logo.principal.svg" alt="logo"/>
     </div>
     <nav className="navbar">
     <button className="btn-country" onClick={showLocationOptions}><span className="country">{location},Finlad</span></button>
     <button className="btn-guest" onClick={showGuestOptions}><span className="guests">{showGuestsText ? 'Add guests' : `${total}`}</span></button>
-    <button className="btn-search" onClick={handleFilterClick} ><img className="ico-search" src="./img/search_black_24dp.svg" alt="" /></button>
+    <button className="btn-search" onClick={handleFilterClick} ><img className="ico-search" src="img/search_black_24dp.svg" alt="" /></button>
     </nav>
     </header>
     </>

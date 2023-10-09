@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+
 import './Card.css'
 
 
@@ -17,7 +17,7 @@ function Card({data}) {
             <span className="text-type">{el.type}. {el.beds} beds</span>
             </div>
               <div className="star-container">
-              <img className="ico-star" src="./img/star_black_24dp.svg"/>
+              <img className="ico-star" src="img/star_black_24dp.svg"/>
               <span className="rating">{el.rating}</span>
               </div>
             </div>
